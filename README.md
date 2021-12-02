@@ -27,7 +27,7 @@ MKS TinyBee: https://www.aliexpress.com/store/1047297?spm=a2g0o.detail.1000007.1
 
 # Size
   - MKS TinyBee motherboard installation size compatible with MKS Gen-L, Nano V3
-  ![MKS TinyBee Size](https://github.com/makerbase-mks/MKS-TinyBee/blob/main/hardware/Image/)
+  ![MKS TinyBee Size](https://github.com/makerbase-mks/MKS-TinyBee/blob/main/hardware/Image/MKS%20TinyBee%20V1.x%20Size.png)
  
 # Wiring
 
