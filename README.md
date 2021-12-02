@@ -24,7 +24,14 @@ MKS TinyBee: https://www.aliexpress.com/store/1047297?spm=a2g0o.detail.1000007.1
   - Microstep settings use DIP switch
   - Has X, Y, Z, MT_DET detection interface
   - Support [3D Touch](https://www.aliexpress.com/store/group/Auto-bed-leveling-senor/1047297_516621299.html?spm=a2g0o.store_pc_groupList.pcShopHead_8325768.1_2_3)
+
+# Size
+  - MKS TinyBee motherboard installation size compatible with MKS Gen-L, Nano V3
+  ![MKS TinyBee Size](https://github.com/makerbase-mks/MKS-TinyBee/blob/main/hardware/Image/)
  
+# Wiring
+
+
 # PinMap
   | Items      |  Function  | Pin |
   |------------|------------|------------|
@@ -78,11 +85,10 @@ MKS TinyBee: https://www.aliexpress.com/store/1047297?spm=a2g0o.detail.1000007.1
   | TF CARD | DET | IO34(Default for SD_DET function) |
   | USART2 | TXD2 | IO17 |
   | USART2 | RXD2 | IO16 |
-
-# Wiring
-
+  | USB | USB to serial port | USART0 |
 
 # Firmware Config
+  - Support Marlin 2.0.x
   
   
   
