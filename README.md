@@ -4,7 +4,7 @@
   ![MKS TinyBee](https://github.com/makerbase-mks/MKS-TinyBee/blob/main/hardware/Image/MKS%20TinyBee%20V1.x.png)
   
 # How to buy
-MKS TinyBee: https://www.aliexpress.com/store/1047297?spm=a2g0o.detail.1000007.1.5d5d290apkP4kL
+MKS TinyBee: https://www.aliexpress.com/item/1005003639545394.html
 
 # Features
   - Support Marlin 2.0.x
