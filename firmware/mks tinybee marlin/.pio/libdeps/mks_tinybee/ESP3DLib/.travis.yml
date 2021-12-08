@@ -1,0 +1,53 @@
+dist: xenial
+sudo: require
+
+language: python
+
+python:
+  - "3.7"
+
+os:
+  - linux
+  
+cache:
+  pip: true
+  directories:
+  - "~/.platformio"
+  
+install:
+  - pip install -U platformio
+
+before_script:
+  - export AUTHOR_NAME="$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
+  - platformio update
+  - cd $TRAVIS_BUILD_DIR
+  - git clone -b bugfix-2.0.x https://github.com/MarlinFirmware/Marlin.git Marlin
+  - cd Marlin
+  - sed -i "s/default_envs = mega2560/default_envs = esp32/g" ./platformio.ini
+  - sed -i "s/#define WIFISUPPORT/\/\/#define WIFISUPPORT/g" ./Marlin/Configuration_adv.h
+  - sed -i "s/\/\/#define ESP3D_WIFISUPPORT/#define ESP3D_WIFISUPPORT/g" ./Marlin/Configuration_adv.h
+  - sed -i "s/\/\/#define WEBSUPPORT/#define WEBSUPPORT/g" ./Marlin/Configuration_adv.h
+  - sed -i "s/\/\/#define OTASUPPORT/#define OTASUPPORT/g" ./Marlin/Configuration_adv.h
+  - sed -i "s/\/\/#define CUSTOM_COMMAND/#define CUSTOM_COMMAND/g" ./Marlin/Configuration_adv.h
+  - sed -i "s/#define MOTHERBOARD BOARD_RAMPS_14_EFB/#define MOTHERBOARD BOARD_MRR_ESPE/g" ./Marlin/Configuration.h
+  - cat ./Marlin/Configuration.h
+  - cp $TRAVIS_BUILD_DIR/extra_script.py .
+script:
+  - platformio run -e esp32 || true
+  - rm -fr $TRAVIS_BUILD_DIR/Marlin/.pio/libdeps/esp32/ESP3DLib/src
+  - cp -r $TRAVIS_BUILD_DIR/src $TRAVIS_BUILD_DIR/Marlin/.pio/libdeps/esp32/ESP3DLib/
+  - platformio run -e esp32
+
+after_success:
+  - chmod +x success.sh
+  - ./success.sh
+after_failure:
+  - chmod +x fail.sh
+  - ./fail.sh
+
+notifications:
+  email:
+    recipients:
+      - $TRAVIS_EMAIL
+    on_success: always
+    on_failure: always

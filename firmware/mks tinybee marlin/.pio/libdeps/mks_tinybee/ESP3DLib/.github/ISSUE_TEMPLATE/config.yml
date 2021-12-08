@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Wiki
+    url: https://github.com/luc-github/ESP3DLib/wiki
+    about: The Wiki.
+  - name: Gitter chat
+    url: https://gitter.im/luc-github/ESP3D
+    about: Join the gitter for support and discussion.
