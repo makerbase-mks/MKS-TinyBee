@@ -30,7 +30,7 @@ MKS TinyBee: https://www.aliexpress.com/item/1005003639545394.html
   ![MKS TinyBee Size](https://github.com/makerbase-mks/MKS-TinyBee/blob/main/hardware/Image/MKS%20TinyBee%20V1.x%20Size.png)
  
 # Wiring
-
+  ![MKS TinyBee Wiring](https://github.com/makerbase-mks/MKS-TinyBee/blob/main/hardware/Image/MKS%20TinyBee%20V1.x%20Wiring.png)
 
 # PinMap
   | Items      |  Function  | Pin |
