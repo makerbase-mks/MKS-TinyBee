@@ -3,8 +3,9 @@
   - MKS TinyBee小蜜蜂主板，是一款集成ESP32 wifi模块的3D打印控制板。支持Marlin 2.0固件，除了支持普通的LCD2004,12864之外，还支持了MKS MINI12864 V3，并且，可以使用MKS TFT串口屏。固件更新可以使用USB直接下载，可以连接wifi进行网页控制打印。
   ![MKS TinyBee](https://github.com/makerbase-mks/MKS-TinyBee/blob/main/hardware/Image/MKS%20TinyBee%20V1.x.png)
   
-# How to buy
-MKS TinyBee: https://www.aliexpress.com/item/1005003639545394.html
+# How to buy MKS TinyBee
+Makerbase official: https://www.aliexpress.com/item/1005003639545394.html
+Makerbase Global:   https://www.aliexpress.com/item/1005003640084870.html
 
 # Features
   - Support Marlin 2.0.x
