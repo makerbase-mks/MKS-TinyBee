@@ -1521,7 +1521,9 @@ void Web_Server::handle()
     }
 #endif //CAPTIVE_PORTAL_FEATURE
     if (_webserver) {
+        disableCore0WDT();
         _webserver->handleClient();
+        enableCore0WDT();
     }
     if (_socket_server && _setupdone) {
         Serial2Socket.handle_flush();
