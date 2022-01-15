@@ -1,4 +1,4 @@
-// #ifdef MKS_MINI_12864_V3
+#ifdef MKS_MINI_12864_V3
 
 #include <U8glib-HAL.h>
 #include "Arduino.h"
@@ -81,4 +81,4 @@ uint8_t u8g_eps_hw_spi_fn(u8g_t *u8g, uint8_t msg, uint8_t arg_val, void *arg_pt
   return 1;
 }
 
-// #endif
+#endif

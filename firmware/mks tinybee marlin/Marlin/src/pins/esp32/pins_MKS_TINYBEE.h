@@ -149,8 +149,6 @@
 #define EXP2_09_PIN                         18
 #define EXP2_10_PIN                         19
 
-
-
 #if HAS_WIRED_LCD
 
   #define BEEPER_PIN                          149

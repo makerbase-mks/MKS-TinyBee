@@ -24,7 +24,9 @@
         "task.h": "c",
         "semphr.h": "c",
         "ex_hal_spi.h": "c",
-        "marduino.h": "c"
+        "marduino.h": "c",
+        "list": "cpp",
+        "regex": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

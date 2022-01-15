@@ -19,7 +19,10 @@
 */
 
 #include "esp3dlibconfig.h"
-#include <U8glib-HAL.h>
+
+#ifdef MKS_MINI_12864_V3
+    #include <U8glib-HAL.h>
+#endif
 
 #if defined(ESP3D_WIFISUPPORT)
 #include MARLIN_HAL_PATH(FlushableHardwareSerial.h)

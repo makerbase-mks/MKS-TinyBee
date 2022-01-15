@@ -55,6 +55,11 @@ extern portMUX_TYPE spinlock;
 
 #define MYSERIAL1 flushableSerial
 
+// #if (SERIAL_PORT_2 == 2)
+//   #define MYSERIAL2 flushableSerial2
+// #endif
+
+
 #if EITHER(WIFISUPPORT, ESP3D_WIFISUPPORT)
   #if ENABLED(ESP3D_WIFISUPPORT)
     typedef ForwardSerial1Class< decltype(Serial2Socket) > DefaultSerial1;
@@ -63,7 +68,17 @@ extern portMUX_TYPE spinlock;
   #else
     #define MYSERIAL2 webSocketSerial
   #endif
+#elif (SERIAL_PORT_2 == 2)
+  #define MYSERIAL2 flushableSerial2
 #endif
+
+#ifdef LCD_SERIAL_PORT
+  #if LCD_SERIAL_PORT==2
+    #define LCD_SERIAL flushableSerial2
+    #define SERIAL_GET_TX_BUFFER_FREE() LCD_SERIAL.availableForWrite()
+  #endif
+#endif
+
 
 #define CRITICAL_SECTION_START() portENTER_CRITICAL(&spinlock)
 #define CRITICAL_SECTION_END()   portEXIT_CRITICAL(&spinlock)
