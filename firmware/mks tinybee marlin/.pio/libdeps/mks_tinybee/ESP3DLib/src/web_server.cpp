@@ -1238,11 +1238,13 @@ void Web_Server::WebUpdateUpload ()
 
 //direct SD files list//////////////////////////////////////////////////
 void Web_Server::handle_direct_SDFileList()
-{
+{   
+    sd_busy_lock = true;
     //this is only for admin an user
     if (is_authenticated() == LEVEL_GUEST) {
         _upload_status=UPLOAD_STATUS_NONE;
         _webserver->send(401, "application/json", "{\"status\":\"Authentication failed!\"}");
+        sd_busy_lock = false;
         return;
     }
 
@@ -1259,6 +1261,7 @@ void Web_Server::handle_direct_SDFileList()
     if (state != 1) {
         _webserver->sendHeader("Cache-Control","no-cache");
         _webserver->send(200, "application/json", "{\"status\":\"No SD Card\"}");
+        sd_busy_lock = false;
         return;
     }
 
@@ -1348,6 +1351,7 @@ void Web_Server::handle_direct_SDFileList()
         s+=  " does not exist on SD Card\"}";
         _webserver->sendHeader("Cache-Control","no-cache");
         _webserver->send(200, "application/json", s.c_str());
+        sd_busy_lock = false;
         return;
     }
     if (list_files) {
@@ -1403,11 +1407,14 @@ void Web_Server::handle_direct_SDFileList()
     _webserver->sendHeader("Cache-Control","no-cache");
     _webserver->send (200, "application/json", jsonfile.c_str());
     _upload_status=UPLOAD_STATUS_NONE;
+    sd_busy_lock = false;
 }
 
 //SD File upload with direct access to SD///////////////////////////////
 void Web_Server::SDFile_direct_upload()
-{
+{   
+    sd_busy_lock = true;
+
     static ESP_SD sdfile;
     static String upload_filename;
     //this is only for admin and user
@@ -1507,7 +1514,11 @@ void Web_Server::SDFile_direct_upload()
         if (sdfile.exists (upload_filename.c_str()) ) {
             sdfile.remove (upload_filename.c_str());
         }
+        sd_busy_lock = false;
+    }else if(_upload_status == UPLOAD_STATUS_SUCCESSFUL) {
+        sd_busy_lock = false;
     }
+
     Esp3DLibConfig::wait(0);
 }
 #endif

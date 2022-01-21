@@ -33,6 +33,7 @@ SdFile workDir;
 dir_t dir_info;
 SdVolume sd_volume;
 
+bool sd_busy_lock = false;
 
 ESP_SD::ESP_SD()
 {

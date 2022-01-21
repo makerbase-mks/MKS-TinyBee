@@ -22,6 +22,9 @@
 
 #ifndef _ESP_SD_H_
 #define _ESP_SD_H_
+
+extern bool sd_busy_lock;
+
 class ESP_SD
 {
 public:

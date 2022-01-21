@@ -1,10 +1,13 @@
-#ifdef MKS_MINI_12864_V3
+#include "../../inc/MarlinConfigPre.h"
+
+#if ENABLED(MKS_MINI_12864_V3)
 
 #include <U8glib-HAL.h>
 #include "Arduino.h"
-#include "../../inc/MarlinConfigPre.h"
+
 #include "../shared/HAL_SPI.h"
 #include "SPI.h"
+#include "sd_ESP32.h"
 
 
 static SPISettings spiConfig;
@@ -27,6 +30,9 @@ static uint8_t msgInitCount = 2; // Ignore all messages until 2nd U8G_COM_MSG_IN
 
 uint8_t u8g_eps_hw_spi_fn(u8g_t *u8g, uint8_t msg, uint8_t arg_val, void *arg_ptr)
 {
+
+  if(sd_busy_lock == true) return 0;
+
   if (msgInitCount) {
     if (msg == U8G_COM_MSG_INIT) msgInitCount --;
     if (msgInitCount) return -1;
