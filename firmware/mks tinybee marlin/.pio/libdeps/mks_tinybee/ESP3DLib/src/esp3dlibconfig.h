@@ -49,6 +49,11 @@
 #define HTTP_FEATURE
 #endif //WEBSUPPORT
 
+#define TCP_SOCKET_FEATURE
+#ifdef TCP_SOCKET_FEATURE
+#define TCP_SOCKET_PORT 8080
+#endif
+
 //OTA_FEATURE: this feature is arduino update over the air
 //Rely on Configuration_adv.h
 #ifdef OTASUPPORT

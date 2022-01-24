@@ -64,11 +64,14 @@ public:
     void flush(void);
     void handle_flush();
     operator bool() const;
-    bool attachWS(void * web_socket);
+    bool attachWS(void * web_socket);    
     bool detachWS();
+    bool attachTS(void * tcp_socket);
+    bool detachTS();
 private:
     uint32_t _lastflush;
     void * _web_socket;
+    void * _tcp_socket;
     uint8_t _TXbuffer[TXBUFFERSIZE];
     uint16_t _TXbufferSize;
     uint8_t _RXbuffer[RXBUFFERSIZE];

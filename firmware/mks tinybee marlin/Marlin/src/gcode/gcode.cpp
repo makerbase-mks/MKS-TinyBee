@@ -1038,11 +1038,12 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
       #if ENABLED(TOUCH_SCREEN_CALIBRATION)
         case 995: M995(); break;                                  // M995: Touch screen calibration for TFT display
       #endif
-
-      #if ENABLED(PLATFORM_M997_SUPPORT)
+	  
+	#if ENABLED(PLATFORM_M997_SUPPORT) || (MOTHERBOARD == BOARD_MKS_TINYBEE)
         case 997: M997(); break;                                  // M997: Perform in-application firmware update
       #endif
-
+	  
+      
       case 999: M999(); break;                                    // M999: Restart after being Stopped
 
       #if ENABLED(POWER_LOSS_RECOVERY)

@@ -25,13 +25,16 @@
 #include "serial2socket.h"
 #include "wificonfig.h"
 #include <WebSocketsServer.h>
+#include "tcp_server.h"
 #include <WiFi.h>
+
 Serial_2_Socket Serial2Socket;
 
 
 Serial_2_Socket::Serial_2_Socket()
 {
     _web_socket = NULL;
+    _tcp_socket = NULL;
     _TXbufferSize = 0;
     _RXbufferSize = 0;
     _RXbufferpos = 0;
@@ -40,6 +43,10 @@ Serial_2_Socket::~Serial_2_Socket()
 {
     if (_web_socket) {
         detachWS();
+    }
+    if(_tcp_socket)
+    {
+        detachTS();
     }
     _TXbufferSize = 0;
     _RXbufferSize = 0;
@@ -80,6 +87,23 @@ bool Serial_2_Socket::detachWS()
     return true;
 }
 
+
+bool Serial_2_Socket::attachTS(void * tcp_socket)
+{
+    if (tcp_socket) {
+        _tcp_socket = tcp_socket;
+        _TXbufferSize=0;
+        return true;
+    }
+    return false;
+}
+bool Serial_2_Socket::detachTS()
+{
+    _tcp_socket = NULL;
+    return true;
+}
+
+
 Serial_2_Socket::operator bool() const
 {
     return true;
@@ -92,7 +116,7 @@ int Serial_2_Socket::available()
 
 size_t Serial_2_Socket::write(uint8_t c)
 {
-    if(!_web_socket) {
+    if((!_web_socket) && (!_tcp_socket) ) {
         return 0;
     }
     write(&c,1);
@@ -101,11 +125,11 @@ size_t Serial_2_Socket::write(uint8_t c)
 
 size_t Serial_2_Socket::write(const uint8_t *buffer, size_t size)
 {
-    if((buffer == NULL) ||(!_web_socket)) {
+    if((buffer == NULL) ||((!_web_socket) && (!_tcp_socket))) {
         if(buffer == NULL) {
             log_i("[SOCKET]No buffer");
         }
-        if(!_web_socket) {
+        if((!_web_socket) && (!_tcp_socket)) {
             log_i("[SOCKET]No socket");
         }
         return 0;
@@ -192,6 +216,9 @@ void Serial_2_Socket::flush(void)
     if (_TXbufferSize > 0) {
         log_i("[SOCKET]flush data, buffer size %d",_TXbufferSize);
         ((WebSocketsServer *)_web_socket)->broadcastBIN(_TXbuffer,_TXbufferSize);
+        #ifdef TCP_SOCKET_FEATURE
+            ((TCP_Server *)_tcp_socket)->tcp_print(_TXbuffer,_TXbufferSize);
+        #endif
         //refresh timout
         _lastflush = millis();
         //reset buffer

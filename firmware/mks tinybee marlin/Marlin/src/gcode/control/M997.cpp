@@ -21,8 +21,11 @@
  */
 
 #include "../gcode.h"
+#if ENABLED(SDSUPPORT)
+#include "../../sd/cardreader.h"
+#endif
 
-#if ENABLED(PLATFORM_M997_SUPPORT)
+#if ENABLED(PLATFORM_M997_SUPPORT) || (MOTHERBOARD == BOARD_MKS_TINYBEE)
 
 #if ENABLED(DWIN_CREALITY_LCD_ENHANCED)
   #include "../../lcd/e3v2/enhanced/dwin.h"
@@ -32,11 +35,28 @@
  * M997: Perform in-application firmware update
  */
 void GcodeSuite::M997() {
+#if (MOTHERBOARD == BOARD_MKS_TINYBEE)
+#if ENABLED(SDSUPPORT)
 
+	if(IS_SD_PAUSED())
+	{
+		SERIAL_ECHOLN("M997 PAUSE");
+	}
+	else if(IS_SD_PRINTING())
+	{
+		SERIAL_ECHOLN("M997 PRINTING");
+	}
+	else
+	{
+		SERIAL_ECHOLN("M997 IDLE");
+	}
+ #endif
+	
+#else
   TERN_(DWIN_CREALITY_LCD_ENHANCED, DWIN_RebootScreen());
 
   flashFirmware(parser.intval('S'));
-
+#endif
 }
 
 #endif

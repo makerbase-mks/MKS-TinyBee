@@ -1154,7 +1154,7 @@ private:
     static void M994();
   #endif
 
-  #if ENABLED(PLATFORM_M997_SUPPORT)
+  #if ENABLED(PLATFORM_M997_SUPPORT) || (MOTHERBOARD == BOARD_MKS_TINYBEE)
     static void M997();
   #endif
 
