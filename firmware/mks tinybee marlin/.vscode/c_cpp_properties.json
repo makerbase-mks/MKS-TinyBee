@@ -100,6 +100,7 @@
                 "C:/Users/SOLA/.platformio/packages/framework-arduinoespressif32@3.10004.210126/libraries/SD_MMC/src",
                 "C:/Users/SOLA/.platformio/packages/framework-arduinoespressif32@3.10004.210126/libraries/SimpleBLE/src",
                 "C:/Users/SOLA/.platformio/packages/framework-arduinoespressif32@3.10004.210126/libraries/Ticker/src",
+                "C:/Users/SOLA/.platformio/packages/tool-unity",
                 ""
             ],
             "browse": {
@@ -197,11 +198,12 @@
                     "C:/Users/SOLA/.platformio/packages/framework-arduinoespressif32@3.10004.210126/libraries/SD_MMC/src",
                     "C:/Users/SOLA/.platformio/packages/framework-arduinoespressif32@3.10004.210126/libraries/SimpleBLE/src",
                     "C:/Users/SOLA/.platformio/packages/framework-arduinoespressif32@3.10004.210126/libraries/Ticker/src",
+                    "C:/Users/SOLA/.platformio/packages/tool-unity",
                     ""
                 ]
             },
             "defines": [
-                "PLATFORMIO=50204",
+                "PLATFORMIO=50205",
                 "ARDUINO_ESP32_DEV",
                 "__MARLIN_FIRMWARE__",
                 "NDEBUG",

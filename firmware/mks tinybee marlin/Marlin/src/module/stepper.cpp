@@ -96,7 +96,7 @@ Stepper stepper; // Singleton
 #include "../sd/cardreader.h"
 #include "../MarlinCore.h"
 #include "../HAL/shared/Delay.h"
-
+#include "../lcd/mks_esp_test.h"
 #if ENABLED(INTEGRATED_BABYSTEPPING)
   #include "../feature/babystep.h"
 #endif
@@ -1493,6 +1493,7 @@ void Stepper::isr() {
   do {
     // Enable ISRs to reduce USART processing latency
     ENABLE_ISRS();
+    
 
     if (!nextMainISR) pulse_phase_isr();                            // 0 = Do coordinated axes Stepper pulses
 
@@ -1533,7 +1534,7 @@ void Stepper::isr() {
     //
 
     nextMainISR -= interval;
-
+    
     #if ENABLED(LIN_ADVANCE)
       if (nextAdvanceISR != LA_ADV_NEVER) nextAdvanceISR -= interval;
     #endif
@@ -1567,7 +1568,6 @@ void Stepper::isr() {
 
     // Compute the tick count for the next ISR
     next_isr_ticks += interval;
-
     /**
      * The following section must be done with global interrupts disabled.
      * We want nothing to interrupt it, as that could mess the calculations

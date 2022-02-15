@@ -59,6 +59,9 @@
 #include "sd/cardreader.h"
 
 #include "lcd/marlinui.h"
+
+#include "lcd/mks_esp_test.h"
+
 #if HAS_TOUCH_BUTTONS
   #include "lcd/touch/touch_buttons.h"
 #endif
@@ -1598,6 +1601,10 @@ void setup() {
   //     // if (!card.isMounted()) SETUP_RUN(card.mount()); // Mount SD to load graphics and fonts
   // #endif
 
+  #if BOTH(ESP32, MKS_TEST)
+    tinybee_test();
+  #endif
+
   marlin_state = MF_RUNNING;
 
   SETUP_LOG("setup() completed.");
@@ -1619,6 +1626,10 @@ void setup() {
 void loop() {
   do {
     idle();
+
+#ifdef MKS_TEST
+    test_step_run();
+#endif
 
     #if ENABLED(SDSUPPORT)
       if (card.flag.abort_sd_printing) abortSDPrinting();

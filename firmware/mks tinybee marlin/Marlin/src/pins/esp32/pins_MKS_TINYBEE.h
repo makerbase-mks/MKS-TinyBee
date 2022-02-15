@@ -40,6 +40,8 @@
 #define BOARD_WEBSITE_URL    "https://github.com/makerbase-mks"
 #define DEFAULT_MACHINE_NAME BOARD_INFO_NAME
 
+// #define MKS_TEST            1
+
 //
 // Servos
 //
@@ -101,14 +103,23 @@
 // Heaters / Fans
 //
 #define HEATER_0_PIN                         145
+#ifndef MKS_TEST
 #define HEATER_1_PIN                         146
 #define FAN_PIN                              147
 #define FAN1_PIN                             148
+#endif
 #define HEATER_BED_PIN                       144
 
 //#define CONTROLLER_FAN_PIN                 148
 //#define E0_AUTO_FAN_PIN                    148  // need to update Configuration_adv.h @section extruder
 //#define E1_AUTO_FAN_PIN                    149  // need to update Configuration_adv.h @section extruder
+#ifdef MKS_TEST
+#define HEATER_1_PIN_T                         146
+#define FAN_PIN_T                              147
+#define FAN1_PIN_T                             148
+#define HEATER_BED_PIN_T                       144
+#endif
+
 
 //
 // MicroSD card
