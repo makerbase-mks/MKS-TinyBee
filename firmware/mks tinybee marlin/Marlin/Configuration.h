@@ -2197,7 +2197,7 @@
 //
 // Note: Usually sold with a white PCB.
 //
-//#define REPRAP_DISCOUNT_SMART_CONTROLLER
+// #define REPRAP_DISCOUNT_SMART_CONTROLLER
 
 //
 // GT2560 (YHCB2004) LCD Display
@@ -2421,12 +2421,12 @@
 // MKS MINI12864 with graphic controller and SD support
 // https://reprap.org/wiki/MKS_MINI_12864
 //
-//#define MKS_MINI_12864
+#define MKS_MINI_12864
 
 //
 // MKS MINI12864 V3 is an alias for FYSETC_MINI_12864_2_1. Type A/B. NeoPixel RGB Backlight.
 //
-#define MKS_MINI_12864_V3
+// #define MKS_MINI_12864_V3
 
 //
 // MKS LCD12864A/B with graphic controller and SD support. Follows MKS_MINI_12864 pinout.

@@ -1,6 +1,6 @@
 #include "../../inc/MarlinConfigPre.h"
 
-#if ENABLED(MKS_MINI_12864_V3)
+#if ANY(MKS_MINI_12864, MKS_MINI_12864_V3)
 
 #include <U8glib-HAL.h>
 #include "Arduino.h"

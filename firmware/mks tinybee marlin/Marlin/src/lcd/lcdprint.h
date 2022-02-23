@@ -31,7 +31,11 @@
 #pragma once
 
 #include "fontutils.h"
+
+#if DISABLED(REPRAP_DISCOUNT_SMART_CONTROLLER)
 #include <U8glib-HAL.h>
+#endif
+
 #include "../inc/MarlinConfig.h"
 
 #if IS_DWIN_MARLINUI

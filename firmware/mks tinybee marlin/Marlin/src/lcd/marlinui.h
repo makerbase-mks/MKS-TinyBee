@@ -84,7 +84,10 @@
   #if HAS_LCD_MENU
 
     #include "lcdprint.h"
+    
+  #if DISABLED(REPRAP_DISCOUNT_SMART_CONTROLLER)
     #include <U8glib-HAL.h>
+  #endif
 
     #if !HAS_GRAPHICAL_TFT
       void _wrap_string(uint8_t &col, uint8_t &row, const char * const string, read_byte_cb_t cb_read_byte, const bool wordwrap=false);
