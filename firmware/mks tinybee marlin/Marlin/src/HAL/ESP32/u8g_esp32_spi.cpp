@@ -1,7 +1,6 @@
 #include "../../inc/MarlinConfigPre.h"
 
 #if ANY(MKS_MINI_12864, MKS_MINI_12864_V3)
-
 #include <U8glib-HAL.h>
 #include "Arduino.h"
 
@@ -13,12 +12,23 @@
 static SPISettings spiConfig;
 static uint8_t msgInitCount = 2; // Ignore all messages until 2nd U8G_COM_MSG_INIT
 
+#if ENABLED(MKS_MINI_12864_V3)
   #define MDOGLCD_MOSI                     23
   #define MDOGLCD_SCK                      18
   #define MLCD_RESET_PIN                   0
   #define MLCD_PINS_DC                     4
   #define MDOGLCD_CS                       21
   #define MDOGLCD_A0                       4
+#endif
+
+#if ENABLED(MKS_MINI_12864)
+  #define MDOGLCD_MOSI                     23
+  #define MDOGLCD_SCK                      18
+  #define MLCD_RESET_PIN                   -1
+  #define MLCD_PINS_DC                     15
+  #define MDOGLCD_CS                       16
+  #define MDOGLCD_A0                       15
+#endif
 
 #ifndef LCD_SPI_SPEED
   #ifdef SD_SPI_SPEED
