@@ -1,4 +1,9 @@
 # MKS-TinyBee
+-V1.0_003
+  - Change from V1.0_002 Version
+    - Endstop's signal add Schottky diode protection
+	- 002 change to 003
+
 -V1.0_002
   - Change from V1.0_001 Version
     - Endstop schottky protection, clamp voltage modified to 5V 
