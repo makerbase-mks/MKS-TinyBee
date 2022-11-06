@@ -64,7 +64,7 @@
   | THM | TH1 | IO36 |
   | THM | TH2 | IO34(Need jumper selection) |
   | THM | TB | IO39 |
-  | EXP1 | BEERPER | IO149 |
+  | EXP1 | BEEPER | IO149 |
   | EXP1 | BTN_ENC | IO13 |
   | EXP1 | LCD_EN | IO21 |
   | EXP1 | LCD_RS | IO4 |
